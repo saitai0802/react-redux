@@ -3,6 +3,6 @@ export function selectBook(book) {
   // an object with a type property.
   return {
     type: "BOOK_SELECTED",
-    payload: book
+    payload: book  // Usinmg the name "payload" is just a convention
   };
 }

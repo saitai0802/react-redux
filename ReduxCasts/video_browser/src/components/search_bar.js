@@ -1,5 +1,8 @@
 // import React from "react";   // Non-ES6 systnax
-import React, { Component } from "react";  //  React, { Component }: const Component = React.Component;
+// const Component = React.Component // Non-ES6 systnax
+
+// { Component }: const Component = React.Component;
+import React, { Component } from "react";
 
 // Functional compoent: 會有野return 返黎。
 // class SearchBar extends React.Component {  // Non-ES6 systnax

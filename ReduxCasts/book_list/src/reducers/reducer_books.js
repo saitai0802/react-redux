@@ -1,3 +1,4 @@
+// Any other files inside of our project can import this file and receive this reducer
 export default function() {
   return [
     { title: "Javascript: The Good Parts", pages: 101 },
