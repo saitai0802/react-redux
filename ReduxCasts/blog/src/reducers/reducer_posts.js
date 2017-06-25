@@ -15,6 +15,8 @@ export default function(state = {}, action) {
     newState[post.id] = post;
     return newState
     */
+    // The reason we put this element into our state is because we can then update the visited post easily
+    // 姐係已經係state入面既post就禁replace 就OK!
       return { ...state, [action.payload.data.id]: action.payload.data }; // ES6 style
     case FETCH_POSTS:
       // It makes the data object becomes
