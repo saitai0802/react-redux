@@ -5,7 +5,8 @@ import { fetchPost, deletePost } from "../actions";
 
 class PostsShow extends Component {
   componentDidMount() {
-    const { id } = this.props.match.params;
+    // You can check if the this.prop.post already here, then don't fetchPost()
+    const { id } = this.props.match.params; // this.props.match.params = url's ID part
     this.props.fetchPost(id);
   }
 
@@ -18,7 +19,9 @@ class PostsShow extends Component {
   }
 
   render() {
-    const { post } = this.props;
+    // 如果mapStateToProps唔用ownProps就會禁，寫勁多野...
+    // this.props.posts[this.props.match.params.id];
+    const { post } = this.props; //第一次ajax未行完個時會係 undefined
 
     if (!post) {
       return <div>Loading...</div>;
@@ -41,7 +44,12 @@ class PostsShow extends Component {
   }
 }
 
+// posts: all posts, ownProps: Is the state of props is going to our this component(尼個post)
+// para 1: application state, para 2: ownProps (this.props === ownProps)
+// 如果我地係尼面已經係posts入面搵左1個post 出黎，禁我地成個component唔使再寫水蛇春禁長既..
+// this.props.posts[this.props.match.params.id];
 function mapStateToProps({ posts }, ownProps) {
+  // 第一次ajax未行完個時會係 { post:undefined }
   return { post: posts[ownProps.match.params.id] };
 }
 

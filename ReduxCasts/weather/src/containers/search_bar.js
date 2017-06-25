@@ -9,10 +9,13 @@ class SearchBar extends Component {
 
     this.state = { term: "" };
 
+    // Blind funtion to make it this.onInputChange to have "this" which is instance of SearchBar
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
+  // If there is a "this" inside an event handler(call back), we needa use blind()
+  // Javasciprt behavior: Please check on the internet later
   onInputChange(event) {
     this.setState({ term: event.target.value });
   }
@@ -42,8 +45,14 @@ class SearchBar extends Component {
   }
 }
 
+// Step 1: 將Action blind 左入 dispatch
+// Blind up action creator(Ajax) to dispatch to make sure
+// action(Ajax) flow down into the middleware and then reducer inside of our redux application.
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchWeather }, dispatch);
 }
 
+// Step 2: 將function blind 左入 SearchBar's props
+// para 1: connect function(mapStateToProps), We don't have one this time, so passing null
+// para 2: connecting Class(mapDispatchToProps)
 export default connect(null, mapDispatchToProps)(SearchBar);
